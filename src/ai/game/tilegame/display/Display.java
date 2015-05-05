@@ -1,10 +1,15 @@
 package ai.game.tilegame.display;
 
+import java.awt.Canvas;
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class Display {
 	//jframe object
 	private JFrame frame;
+	//canvas object
+	private Canvas canvas;
 	
 	private String title;
 	private int width, height;
@@ -29,6 +34,16 @@ public class Display {
 		frame.setLocationRelativeTo(null);
 		//is invisable by default
 		frame.setVisible(true);
-		//frame.something
+		
+		//initilize canvas
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(width, height));
+		canvas.setMinimumSize(new Dimension(width, height));
+		canvas.setMaximumSize(new Dimension(width, height));
+		//add canvas to the frame
+		frame.add(canvas);
+		//resize window to show canvas
+		frame.pack();
+		
 	}
 }
