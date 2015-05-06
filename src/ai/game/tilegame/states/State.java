@@ -15,7 +15,8 @@ public abstract class State {
 		return currentState;
 	}
 	
-	
+
+
 	
 	//class
 	public abstract void tick();

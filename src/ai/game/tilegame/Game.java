@@ -1,23 +1,23 @@
 package ai.game.tilegame;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import ai.game.tilegame.display.Display;
 import ai.game.tilegame.gfx.Assets;
-import ai.game.tilegame.gfx.ImageLoader;
-import ai.game.tilegame.gfx.SpriteSheet;
+import ai.game.tilegame.states.GameState;
+import ai.game.tilegame.states.State;
+
 //runs on a thread
 public class Game implements Runnable {
-	
+	//thread
 	private Thread thread;
 	private boolean running = false;
+	//graphics
 	private BufferStrategy bs;
 	private Graphics g;
-	
-
+	//states
+	private State gameState;
 	
 	private Display display;
 	
@@ -28,12 +28,17 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		//call init method and load images from assets class
 		Assets.init();
+		//init declaration
+		gameState = new GameState();
+		State.setState(gameState);
+		
 	}
 	
-	int x = 0;
-	
-	private void update(){
-		x += 1;
+
+	private void tick(){
+		//if we dont have a state
+		if(State.getState() != null)
+			State.getState().tick();
 	}
 	
 	private void render(){
@@ -47,7 +52,10 @@ public class Game implements Runnable {
 		//clear screen
 		g.clearRect(0, 0, width, height);
 		//draw to screen
-		g.drawImage(Assets.dirt, x, 10, null);
+		
+		//if there is no state render
+		if(State.getState() != null)
+			State.getState().render(g);
 		
 		
 		
@@ -90,7 +98,7 @@ public class Game implements Runnable {
 			//update last time
 			lastTime = now;	
 			if(delta >= 1){
-				update();
+				tick();
 				render();
 				updates++;
 				delta--;
