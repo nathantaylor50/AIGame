@@ -10,14 +10,14 @@ public class Assets {
 	public static void init(){
 		//load spreadsheet
 		SpriteSheet sheet = new SpriteSheet(
-				ImageLoader.loadImage("/textures/SpriteSheet.png"));
+				ImageLoader.loadImage("/textures/Scavengers_SpriteSheet.png"));
 		//laod assets
 		player = sheet.crop(0, 0, width, height);
-		enemy = sheet.crop(0, height, width, height);
-		dirt = sheet.crop(0, height * 2, width, height);
-		rock = sheet.crop(width, height * 2, width, height);
-		hole = sheet.crop(width * 2, height * 2, width, height);
-		reward = sheet.crop(0, height * 3, width, height);
+		enemy = sheet.crop(0, height * 2, width, height);
+		dirt = sheet.crop(0, height * 4, width, height);
+		rock = sheet.crop(width, height * 3, width, height);
+		hole = sheet.crop(0, height * 3, width, height);
+		reward = sheet.crop(width * 2, height * 2, width, height);
 		
 		
 	}
