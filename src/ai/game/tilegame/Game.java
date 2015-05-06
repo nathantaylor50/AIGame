@@ -1,11 +1,16 @@
 package ai.game.tilegame;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+
 import ai.game.tilegame.display.Display;
 //runs on a thread
 public class Game implements Runnable {
 	
 	private Thread thread;
 	private boolean running = false;
+	private BufferStrategy bs;
+	private Graphics g;
 	
 	private Display display;
 	public int width, height;
@@ -20,8 +25,21 @@ public class Game implements Runnable {
 	}
 	
 	private void render(){
+		bs = display.getCanvas().getBufferStrategy();
+		//if canvas doesnt have a buffer strategy, create one
+		if(bs == null){
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		g = bs.getDrawGraphics();
+		//draw
+		g.fillRect(0, 0, width, height);
 		
+		//end draw
+		bs.show();
+		g.dispose();
 	}
+	
 	//contructor
 	public Game(String title, int width, int height){
 		this.width = width;

@@ -46,4 +46,8 @@ public class Display {
 		frame.pack();
 		
 	}
+	//get canvas
+	public Canvas getCanvas(){
+		return canvas;
+	}
 }
