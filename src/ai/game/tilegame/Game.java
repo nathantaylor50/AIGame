@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import ai.game.tilegame.display.Display;
+import ai.game.tilegame.gfx.Assets;
 import ai.game.tilegame.gfx.ImageLoader;
 import ai.game.tilegame.gfx.SpriteSheet;
 //runs on a thread
@@ -16,8 +17,7 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
-	private BufferedImage test;
-	private SpriteSheet sheet;
+
 	
 	private Display display;
 	
@@ -26,8 +26,8 @@ public class Game implements Runnable {
 	
 	private void init(){
 		display = new Display(title, width, height);
-		test = ImageLoader.loadImage("/textures/Scavengers_SpriteSheet.png");
-		sheet = new SpriteSheet(test);
+		//call init method and load images from assets class
+		Assets.init();
 	}
 	
 	private void update(){
@@ -45,8 +45,7 @@ public class Game implements Runnable {
 		//clear screen
 		g.clearRect(0, 0, width, height);
 		//draw to screen
-		g.drawImage(sheet.crop(0, 0, 30, 32), 5, 5, null);
-		
+		g.drawImage(Assets.dirt, 10, 10, null);
 		
 		
 		
