@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package ai.game.tilegame.gfx;
 
 import java.awt.image.BufferedImage;
