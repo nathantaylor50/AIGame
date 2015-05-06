@@ -2,6 +2,7 @@ package ai.game.tilegame.states;
 
 import java.awt.Graphics;
 
+import ai.game.tilegame.Game;
 import ai.game.tilegame.entities.creatures.Player;
 import ai.game.tilegame.gfx.Assets;
 
@@ -12,8 +13,9 @@ public class GameState extends State {
 	
 	private Player player;
 	
-	public GameState(){
-		player = new Player(100, 100);
+	public GameState(Game game){
+		super(game);
+		player = new Player(game, 100, 100);
 		
 	}
 	

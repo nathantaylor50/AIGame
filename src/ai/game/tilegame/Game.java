@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import ai.game.tilegame.display.Display;
 import ai.game.tilegame.gfx.Assets;
+import ai.game.tilegame.input.KeyManager;
 import ai.game.tilegame.states.GameState;
 import ai.game.tilegame.states.MenuState;
 import ai.game.tilegame.states.State;
@@ -14,12 +15,17 @@ public class Game implements Runnable {
 	//thread
 	private Thread thread;
 	private boolean running = false;
+	
 	//graphics
 	private BufferStrategy bs;
 	private Graphics g;
+	
 	//states
 	private State gameState;
 	private State menuState;
+	
+	//input
+	private KeyManager keyManager;
 	
 	private Display display;
 	
@@ -28,17 +34,20 @@ public class Game implements Runnable {
 	
 	private void init(){
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		//call init method and load images from assets class
 		Assets.init();
+		
 		//init declaration
-		gameState = new GameState();
-		menuState = new MenuState();
+		gameState = new GameState(this);
+		menuState = new MenuState(this);
 		State.setState(gameState);
 		
 	}
 	
 
 	private void tick(){
+		keyManager.tick();
 		//if we dont have a state
 		if(State.getState() != null)
 			State.getState().tick();
@@ -72,6 +81,7 @@ public class Game implements Runnable {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
 	}
 	
 
@@ -114,6 +124,10 @@ public class Game implements Runnable {
 		}
 		//stops thread
 		stop();
+	}
+	
+	public KeyManager getKeyManager(){
+		return keyManager;
 	}
 	
 	//thread method

@@ -2,6 +2,8 @@ package ai.game.tilegame.states;
 
 import java.awt.Graphics;
 
+import ai.game.tilegame.Game;
+
 public abstract class State {
 	
 	
@@ -15,10 +17,15 @@ public abstract class State {
 		return currentState;
 	}
 	
-
+	//class
+	protected Game game;
+	
+	public State(Game game){
+		this.game = game;
+	}
 
 	
-	//class
+
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);

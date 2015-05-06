@@ -2,9 +2,12 @@ package ai.game.tilegame.states;
 
 import java.awt.Graphics;
 
+import ai.game.tilegame.Game;
+
 public class MenuState extends State {
 
-	public MenuState(){
+	public MenuState(Game game){
+		super(game);
 		
 	}
 	

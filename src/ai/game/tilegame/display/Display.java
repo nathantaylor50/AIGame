@@ -2,7 +2,6 @@ package ai.game.tilegame.display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class Display {
@@ -40,6 +39,9 @@ public class Display {
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
+		canvas.setFocusable(false);
+		
+		
 		//add canvas to the frame
 		frame.add(canvas);
 		//resize window to show canvas
@@ -49,5 +51,9 @@ public class Display {
 	//get canvas
 	public Canvas getCanvas(){
 		return canvas;
+	}
+	
+	public JFrame getFrame(){
+		return frame;
 	}
 }
