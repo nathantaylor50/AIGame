@@ -1,9 +1,12 @@
 package ai.game.tilegame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import ai.game.tilegame.display.Display;
+import ai.game.tilegame.gfx.ImageLoader;
 //runs on a thread
 public class Game implements Runnable {
 	
@@ -11,7 +14,6 @@ public class Game implements Runnable {
 	private boolean running = false;
 	private BufferStrategy bs;
 	private Graphics g;
-	
 	private Display display;
 	public int width, height;
 	public String title;
@@ -32,8 +34,9 @@ public class Game implements Runnable {
 			return;
 		}
 		g = bs.getDrawGraphics();
-		//draw
-		g.fillRect(0, 0, width, height);
+		//clear screen
+		g.clearRect(0, 0, width, height);
+		//draw to screen
 		
 		//end draw
 		bs.show();
