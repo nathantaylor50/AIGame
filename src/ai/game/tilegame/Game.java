@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import ai.game.tilegame.display.Display;
 import ai.game.tilegame.gfx.Assets;
 import ai.game.tilegame.states.GameState;
+import ai.game.tilegame.states.MenuState;
 import ai.game.tilegame.states.State;
 
 //runs on a thread
@@ -18,6 +19,7 @@ public class Game implements Runnable {
 	private Graphics g;
 	//states
 	private State gameState;
+	private State menuState;
 	
 	private Display display;
 	
@@ -30,6 +32,7 @@ public class Game implements Runnable {
 		Assets.init();
 		//init declaration
 		gameState = new GameState();
+		menuState = new MenuState();
 		State.setState(gameState);
 		
 	}
